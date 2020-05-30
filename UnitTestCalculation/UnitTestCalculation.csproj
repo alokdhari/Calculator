@@ -62,8 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CalculationTestCases.cs" />
+    <Compile Include="ValidateInputs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

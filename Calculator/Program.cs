@@ -15,7 +15,10 @@ namespace Calculator
         static void ConfigureServices()
         {
             var services = new ServiceCollection();
-            services.AddTransient<ICalculateLogic, CalculateLogic>();
+            services.AddTransient<ICalculateLogic, AdditionLogic>();
+            services.AddTransient<ICalculateLogic, SubstractLogic>();
+            services.AddTransient<ICalculateLogic, DivisionLogic>();
+            services.AddTransient<ICalculateLogic, MultiplyLogic>();
             services.AddTransient<ILogger, Logger>();
             services.AddTransient<IUnityOfWork, UnityOfWork>();
             ServiceProvider = services.BuildServiceProvider();

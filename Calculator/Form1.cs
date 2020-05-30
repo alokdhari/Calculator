@@ -13,14 +13,14 @@ namespace Calculator
 {
     public partial class Form1 : Form
     {
-        private readonly IUnityOfWork _unityOfWork;
+        //private readonly IUnityOfWork _unityOfWork;
 
         public Form1()
-        {
+        {   
             InitializeComponent();
 
             /*Initialize unity DI*/
-            _unityOfWork = (IUnityOfWork)Program.ServiceProvider.GetService(typeof(IUnityOfWork));
+            //_unityOfWork = (IUnityOfWork)Program.ServiceProvider.GetService(typeof(IUnityOfWork));
 
             
         }
@@ -51,28 +51,28 @@ namespace Calculator
 
         private void prob1_keyup(object sender, KeyEventArgs e)
         {
-            decimal i;
-            if (decimal.TryParse((sender as RichTextBox).Text, out i))
-            {
-                if (!(i >= 0 && i <= 1))
-                {
-                    e.Handled = true;
-                    (sender as RichTextBox).Text = "";
-                }
-            }
+            //decimal i;
+            //if (decimal.TryParse((sender as RichTextBox).Text, out i))
+            //{
+            //    if (!(i >= 0 && i <= 1))
+            //    {
+            //        e.Handled = true;
+            //        (sender as RichTextBox).Text = "";
+            //    }
+            //}
         }
 
         private void prob2_keyup(object sender, KeyEventArgs e)
         {
-            decimal i;
-            if (decimal.TryParse((sender as RichTextBox).Text, out i))
-            {
-                if (!(i >= 0 && i <= 1))
-                {
-                    e.Handled = true;
-                    (sender as RichTextBox).Text = "";
-                }
-            }
+            //decimal i;
+            //if (decimal.TryParse((sender as RichTextBox).Text, out i))
+            //{
+            //    if (!(i >= 0 && i <= 1))
+            //    {
+            //        e.Handled = true;
+            //        (sender as RichTextBox).Text = "";
+            //    }
+            //}
         }
 
         #endregion
@@ -81,22 +81,71 @@ namespace Calculator
         {
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
-                var result = _unityOfWork.calculateLogic.combined(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
-                lblResult.Text = "Result is " + result;
+                UnityOfWork unityOfWork = new UnityOfWork("Add");
 
-                _unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "combine");
+                if(unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+                {
+                    var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
+                    lblResult.Text = "Result is " + result;
+
+                    unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Add");
+                }
+                else
+                {
+                    lblResult.Text = "Inputs are invalid";
+                }
             }
-
         }
 
         private void Either_click(object sender, EventArgs e)
         {
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
-                var result = _unityOfWork.calculateLogic.Either(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
+                UnityOfWork unityOfWork = new UnityOfWork("Substract");
+
+                if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+                {
+                    var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
+                    lblResult.Text = "Result is " + result;
+
+                    unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Substract");
+                }
+                else
+                {
+                    lblResult.Text = "Inputs are invalid";
+                }
+            }
+        }
+
+        private void Multiply_Click(object sender, EventArgs e)
+        {
+            UnityOfWork unityOfWork = new UnityOfWork("Multiply");
+            if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+            {
+                var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
                 lblResult.Text = "Result is " + result;
 
-                _unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Either");
+                unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Multiply");
+            }
+            else
+            {
+                lblResult.Text = "Inputs are invalid";
+            }
+        }
+
+        private void Divide_Click(object sender, EventArgs e)
+        {
+            UnityOfWork unityOfWork = new UnityOfWork("Division");
+            if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+            {
+                var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
+                lblResult.Text = "Result is " + result;
+
+                unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Division");
+            }
+            else
+            {
+                lblResult.Text = "Inputs are invalid";
             }
         }
     }

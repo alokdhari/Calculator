@@ -41,13 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculateLogic.cs" />
-    <Compile Include="ICalculateLogic.cs" />
+    <Compile Include="CalculationLogics\AdditionLogic.cs" />
+    <Compile Include="CalculationLogics\DivisionLogic.cs" />
+    <Compile Include="CalculationLogics\MultiplyLogic.cs" />
+    <Compile Include="CalculatorLogicInterface\ICalculateLogic.cs" />
+    <Compile Include="Factory\CalculatorFactory.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IUnityOfWork.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CalculationLogics\SubstractLogic.cs" />
     <Compile Include="UnityOfWork.cs" />
+    <Compile Include="ValidationInterface\IValidate.cs" />
+    <Compile Include="ValidationLogic\Validate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

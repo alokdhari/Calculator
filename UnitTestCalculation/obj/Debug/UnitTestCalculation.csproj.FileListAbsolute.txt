@@ -18,3 +18,6 @@ D:\PRTest\Calculator\UnitTestCalculation\obj\Debug\UnitTestCalculation.csprojAss
 D:\PRTest\Calculator\UnitTestCalculation\obj\Debug\UnitTestCalculation.csproj.CopyComplete
 D:\PRTest\Calculator\UnitTestCalculation\obj\Debug\UnitTestCalculation.dll
 D:\PRTest\Calculator\UnitTestCalculation\obj\Debug\UnitTestCalculation.pdb
+D:\PRTest\Calculator\UnitTestCalculation\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\PRTest\Calculator\UnitTestCalculation\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\PRTest\Calculator\UnitTestCalculation\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll

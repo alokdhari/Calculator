@@ -1,7 +1,0 @@
-We performed combine calculation for 0.2 and 0.2 at 30-05-2020 10:17:06. The result is 0.04.
-We performed Either calculation for 0.2 and 0.2 at 30-05-2020 10:17:08. The result is 0.36.
-We performed Either calculation for 0.2 and 0.2 at 30-05-2020 10:17:09. The result is 0.36.
-We performed Either calculation for 0.2 and 0.2 at 30-05-2020 10:17:09. The result is 0.36.
-We performed Either calculation for 0.2 and 0.2 at 30-05-2020 10:17:10. The result is 0.36.
-We performed Either calculation for 0.2 and 0.4 at 30-05-2020 10:19:34. The result is 0.52.
-We performed combine calculation for 0.2 and 0.4 at 30-05-2020 10:19:35. The result is 0.08.
