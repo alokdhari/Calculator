@@ -1,12 +1,5 @@
 ﻿using CalculatorBL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -16,17 +9,16 @@ namespace Calculator
         //private readonly IUnityOfWork _unityOfWork;
 
         public Form1()
-        {   
+        {
             InitializeComponent();
 
             /*Initialize unity DI*/
-            //_unityOfWork = (IUnityOfWork)Program.ServiceProvider.GetService(typeof(IUnityOfWork));
+            //_unityOfWork = (IUnityOfWork)Program.ServiceProvider.GetService(typeof(IUnityOfWork));            
 
-            
         }
 
         #region Validatin to allow decimal from 0 to 1
-        
+
         private void prob1_keypress(object sender, KeyPressEventArgs e)
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || (e.KeyChar == '.')))
@@ -77,13 +69,15 @@ namespace Calculator
 
         #endregion
 
+
+
         private void combine_click(object sender, EventArgs e)
         {
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
                 IUnityOfWork unityOfWork = new UnityOfWork("Add");
 
-                if(unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+                if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
                 {
                     var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
                     lblResult.Text = "Result is " + result;
@@ -148,5 +142,8 @@ namespace Calculator
                 lblResult.Text = "Inputs are invalid";
             }
         }
+
+        // Please implement the calling of relevant calculator here. 
+        // Call the relevant service for validation.
     }
 }

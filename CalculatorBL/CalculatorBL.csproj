@@ -45,6 +45,7 @@
     <Compile Include="CalculationLogics\DivisionLogic.cs" />
     <Compile Include="CalculationLogics\MultiplyLogic.cs" />
     <Compile Include="CalculatorLogicInterface\ICalculateLogic.cs" />
+    <Compile Include="CalculatorLogicInterface\ICalculator.cs" />
     <Compile Include="Factory\CalculatorFactory.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IUnityOfWork.cs" />

@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -19,8 +17,23 @@ namespace Calculator
             services.AddTransient<ICalculateLogic, SubstractLogic>();
             services.AddTransient<ICalculateLogic, DivisionLogic>();
             services.AddTransient<ICalculateLogic, MultiplyLogic>();
+            services.AddTransient<ICalculateLogic, MultiplyLogic>();
             services.AddTransient<ILogger, Logger>();
             services.AddTransient<IUnityOfWork, UnityOfWork>();
+
+            // Resolver to resolve correct calculator
+            services.AddTransient<EitherCalculator>();
+            services.AddTransient<ServiceResolver>(serviceProvider => key =>
+            {
+                switch (key)
+                {
+                    case "Either":
+                        return serviceProvider.GetService<EitherCalculator>();
+                    default:
+                        throw new KeyNotFoundException(); // or maybe return null, up to you
+                }
+            });
+
             ServiceProvider = services.BuildServiceProvider();
         }
 
@@ -35,5 +48,7 @@ namespace Calculator
             ConfigureServices();
             Application.Run(new Form1());
         }
+
+        public delegate ICalculator ServiceResolver(string key);
     }
 }
