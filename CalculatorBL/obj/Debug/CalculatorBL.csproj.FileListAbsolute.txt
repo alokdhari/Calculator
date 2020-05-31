@@ -1,5 +1,0 @@
-D:\PRTest\Calculator\CalculatorBL\bin\Debug\CalculatorBL.dll
-D:\PRTest\Calculator\CalculatorBL\bin\Debug\CalculatorBL.pdb
-D:\PRTest\Calculator\CalculatorBL\obj\Debug\CalculatorBL.csprojAssemblyReference.cache
-D:\PRTest\Calculator\CalculatorBL\obj\Debug\CalculatorBL.dll
-D:\PRTest\Calculator\CalculatorBL\obj\Debug\CalculatorBL.pdb

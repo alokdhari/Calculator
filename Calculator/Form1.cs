@@ -81,7 +81,7 @@ namespace Calculator
         {
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
-                UnityOfWork unityOfWork = new UnityOfWork("Add");
+                IUnityOfWork unityOfWork = new UnityOfWork("Add");
 
                 if(unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
                 {
@@ -101,7 +101,7 @@ namespace Calculator
         {
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
-                UnityOfWork unityOfWork = new UnityOfWork("Substract");
+                IUnityOfWork unityOfWork = new UnityOfWork("Substract");
 
                 if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
                 {
@@ -119,7 +119,7 @@ namespace Calculator
 
         private void Multiply_Click(object sender, EventArgs e)
         {
-            UnityOfWork unityOfWork = new UnityOfWork("Multiply");
+            IUnityOfWork unityOfWork = new UnityOfWork("Multiply");
             if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
             {
                 var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
@@ -135,7 +135,7 @@ namespace Calculator
 
         private void Divide_Click(object sender, EventArgs e)
         {
-            UnityOfWork unityOfWork = new UnityOfWork("Division");
+            IUnityOfWork unityOfWork = new UnityOfWork("Division");
             if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
             {
                 var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));

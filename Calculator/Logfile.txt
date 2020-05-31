@@ -1,0 +1,2 @@
+We performed Add calculation for 0.2 and 0.2 at 31-05-2020 08:47:23. The result is 0.4.
+We performed Add calculation for 0.2 and 0.2 at 31-05-2020 08:47:24. The result is 0.4.
