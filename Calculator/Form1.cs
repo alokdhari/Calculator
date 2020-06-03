@@ -1,20 +1,22 @@
 ﻿using CalculatorBL;
 using System;
 using System.Windows.Forms;
+using static Calculator.Program;
 
 namespace Calculator
 {
     public partial class Form1 : Form
     {
-        //private readonly IUnityOfWork _unityOfWork;
+       
+        private readonly ServiceResolver _serviceResolver;
+        private readonly Logger _logger;
 
-        public Form1()
+        public Form1(ServiceResolver serviceResolver, Logger logger)
         {
+            //Injecting DI service
+            _serviceResolver = serviceResolver;
+            _logger = logger;
             InitializeComponent();
-
-            /*Initialize unity DI*/
-            //_unityOfWork = (IUnityOfWork)Program.ServiceProvider.GetService(typeof(IUnityOfWork));            
-
         }
 
         #region Validatin to allow decimal from 0 to 1
@@ -73,16 +75,15 @@ namespace Calculator
 
         private void combine_click(object sender, EventArgs e)
         {
+            var _calculator = _serviceResolver("Combined");
+
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
-                IUnityOfWork unityOfWork = new UnityOfWork("Add");
-
-                if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+                if (_calculator.IsValid(Convert.ToDouble(txtProb1.Text), Convert.ToDouble(txtProb1.Text)))
                 {
-                    var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
+                    var result = _calculator.Calculate(Convert.ToDouble(txtProb1.Text), Convert.ToDouble(txtProb1.Text));
                     lblResult.Text = "Result is " + result;
-
-                    unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Add");
+                    _logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Combine");
                 }
                 else
                 {
@@ -93,16 +94,16 @@ namespace Calculator
 
         private void Either_click(object sender, EventArgs e)
         {
+
+            var _calculator = _serviceResolver("Either");
+
             if (txtProb1.Text != "" && txtProb2.Text != "")
             {
-                IUnityOfWork unityOfWork = new UnityOfWork("Substract");
-
-                if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
+                if (_calculator.IsValid(Convert.ToDouble(txtProb1.Text), Convert.ToDouble(txtProb1.Text)))
                 {
-                    var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
+                    var result = _calculator.Calculate(Convert.ToDouble(txtProb1.Text), Convert.ToDouble(txtProb1.Text));
                     lblResult.Text = "Result is " + result;
-
-                    unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Substract");
+                    _logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Either");
                 }
                 else
                 {
@@ -111,39 +112,7 @@ namespace Calculator
             }
         }
 
-        private void Multiply_Click(object sender, EventArgs e)
-        {
-            IUnityOfWork unityOfWork = new UnityOfWork("Multiply");
-            if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
-            {
-                var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
-                lblResult.Text = "Result is " + result;
+        
 
-                unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Multiply");
-            }
-            else
-            {
-                lblResult.Text = "Inputs are invalid";
-            }
-        }
-
-        private void Divide_Click(object sender, EventArgs e)
-        {
-            IUnityOfWork unityOfWork = new UnityOfWork("Division");
-            if (unityOfWork.validate.IsValidInputs(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text)))
-            {
-                var result = unityOfWork.calculateLogic.Operation(Convert.ToDecimal(txtProb1.Text), Convert.ToDecimal(txtProb2.Text));
-                lblResult.Text = "Result is " + result;
-
-                unityOfWork.logger.LogResult(txtProb1.Text, txtProb2.Text, result.ToString(), "Division");
-            }
-            else
-            {
-                lblResult.Text = "Inputs are invalid";
-            }
-        }
-
-        // Please implement the calling of relevant calculator here. 
-        // Call the relevant service for validation.
     }
 }
